@@ -2,6 +2,8 @@ import { Red_Hat_Display } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "../components/ui/sonner";
 import { AuthProvider } from "../context/authProvider";
+import { ThemeProvider } from "../context/themeProvider";
+import { SearchProvider } from "../context/searchProvider";
 
 const font = Red_Hat_Display({
   subsets: ["latin"],
@@ -19,7 +21,9 @@ export default function RootLayout({ children }) {
     <html lang="en" className="hydrated">
       <body className={`${font.className} antialiased`}>
         <AuthProvider>
-          {children}
+          <SearchProvider>
+            <ThemeProvider>{children}</ThemeProvider>
+          </SearchProvider>
           <Toaster />
         </AuthProvider>
       </body>
